@@ -12,12 +12,15 @@
         <tbody>
           <tr v-for="(transaction, index) in transactions" :key="index">
             <td class="border border-gray-300 px-4 py-2 text-blue-50">{{ transaction.title }}</td>
-            <td class="border border-gray-300 px-4 py-2 " :class="{ 'font-bold': transaction.amount >= 500, 'text-green-500': transaction.type === 'Income', 'text-red-500': transaction.type === 'Expense' }">
+            <td 
+              class="border border-gray-300 px-4 py-2"
+              :class="{ 'font-bold': transaction.amount >= 500, 'text-green-500': transaction.type === 'Income', 'text-red-500': transaction.type === 'Expense' }"
+            >
               ${{ transaction.amount }}
             </td>
             <td class="border border-gray-300 px-4 py-2 uppercase text-blue-50">{{ transaction.type }}</td>
             <td class="border border-gray-300 px-4 py-2 text-blue-50">
-              <button @click="$emit('delete-transaction', index)" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+              <button @click="deleteTransaction(index)" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
             </td>
           </tr>
           <tr v-if="transactions.length === 0">
@@ -28,9 +31,17 @@
     </div>
   </template>
   
-  <script>
-  export default {
-    props: ['transactions']
+  <script setup>
+  import { defineProps, defineEmits } from 'vue';
+  
+  const props = defineProps({
+    transactions: Array
+  });
+  
+  const emit = defineEmits(['delete-transaction']);
+  
+  const deleteTransaction = (index) => {
+    emit('delete-transaction', index);
   };
   </script>
   

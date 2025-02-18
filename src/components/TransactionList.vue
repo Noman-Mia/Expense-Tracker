@@ -3,10 +3,10 @@
       <!-- Filter Section -->
       <div class="mb-4">
         <label class="text-white mr-2">Filter:</label>
-        <select v-model="selectedFilter" @change="filterTransactions" class="border p-2 rounded bg-gray-800 text-white">
-          <option value="All">All</option>
-          <option value="Income">Income</option>
-          <option value="Expense">Expense</option>
+        <select v-model="selectedFilter" @change="filterTransactions" class="border p-2 rounded  text-white">
+          <option class="bg-black" value="All">All</option>
+          <option class="bg-black" value="Income">Income</option>
+          <option class="bg-black" value="Expense">Expense</option>
         </select>
       </div>
   
@@ -31,7 +31,7 @@
             </td>
             <td class="border border-gray-300 px-4 py-2 uppercase text-blue-50">{{ transaction.type }}</td>
             <td class="border border-gray-300 px-4 py-2 text-blue-50">
-              <button @click="deleteTransaction(index)" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+              <button @click="deleteTransaction(index)" class="bg-red-500 text-white px-2 py-2 rounded  ">Delete</button>
             </td>
           </tr>
           <tr v-if="filteredTransactions.length === 0">

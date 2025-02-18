@@ -29,7 +29,7 @@
     localStorage.setItem('transactions', JSON.stringify(transactions.value));
   };
   
-  // Watch for changes in transactions and save automatically
+
   watch(transactions, saveTransactions, { deep: true });
   
   const addTransaction = (transaction) => {

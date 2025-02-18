@@ -1,5 +1,16 @@
 <template>
     <div>
+      <!-- Filter Section -->
+      <div class="mb-4">
+        <label class="text-white mr-2">Filter:</label>
+        <select v-model="selectedFilter" @change="filterTransactions" class="border p-2 rounded bg-gray-800 text-white">
+          <option value="All">All</option>
+          <option value="Income">Income</option>
+          <option value="Expense">Expense</option>
+        </select>
+      </div>
+  
+      <!-- Transactions Table -->
       <table class="w-full border-collapse border border-gray-300">
         <thead>
           <tr>
@@ -10,9 +21,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(transaction, index) in transactions" :key="index">
+          <tr v-for="(transaction, index) in filteredTransactions" :key="index">
             <td class="border border-gray-300 px-4 py-2 text-blue-50">{{ transaction.title }}</td>
-            <td 
+            <td
               class="border border-gray-300 px-4 py-2"
               :class="{ 'font-bold': transaction.amount >= 500, 'text-green-500': transaction.type === 'Income', 'text-red-500': transaction.type === 'Expense' }"
             >
@@ -23,8 +34,8 @@
               <button @click="deleteTransaction(index)" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
             </td>
           </tr>
-          <tr v-if="transactions.length === 0">
-            <td colspan="4" class="text-center py-4 text-blue-50">No transactions recorded yet.</td>
+          <tr v-if="filteredTransactions.length === 0">
+            <td colspan="4" class="text-center py-4 text-blue-50">No transactions found.</td>
           </tr>
         </tbody>
       </table>
@@ -32,13 +43,22 @@
   </template>
   
   <script setup>
-  import { defineProps, defineEmits } from 'vue';
+  import { defineProps, defineEmits, ref, computed } from 'vue';
   
   const props = defineProps({
     transactions: Array
   });
   
   const emit = defineEmits(['delete-transaction']);
+  
+  const selectedFilter = ref('All');
+  
+  const filteredTransactions = computed(() => {
+    if (selectedFilter.value === 'All') {
+      return props.transactions;
+    }
+    return props.transactions.filter(transaction => transaction.type === selectedFilter.value);
+  });
   
   const deleteTransaction = (index) => {
     emit('delete-transaction', index);

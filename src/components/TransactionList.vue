@@ -11,12 +11,12 @@
         </thead>
         <tbody>
           <tr v-for="(transaction, index) in transactions" :key="index">
-            <td class="border border-gray-300 px-4 py-2">{{ transaction.title }}</td>
-            <td class="border border-gray-300 px-4 py-2" :class="{ 'font-bold': transaction.amount >= 500, 'text-green-500': transaction.type === 'Income', 'text-red-500': transaction.type === 'Expense' }">
+            <td class="border border-gray-300 px-4 py-2 text-blue-50">{{ transaction.title }}</td>
+            <td class="border border-gray-300 px-4 py-2 " :class="{ 'font-bold': transaction.amount >= 500, 'text-green-500': transaction.type === 'Income', 'text-red-500': transaction.type === 'Expense' }">
               ${{ transaction.amount }}
             </td>
-            <td class="border border-gray-300 px-4 py-2 uppercase">{{ transaction.type }}</td>
-            <td class="border border-gray-300 px-4 py-2">
+            <td class="border border-gray-300 px-4 py-2 uppercase text-blue-50">{{ transaction.type }}</td>
+            <td class="border border-gray-300 px-4 py-2 text-blue-50">
               <button @click="$emit('delete-transaction', index)" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
             </td>
           </tr>

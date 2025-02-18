@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="handleSubmit" class="mb-4 flex  items-center gap-3">
+    <form @submit.prevent="handleSubmit" class=" md:flex mb-4  items-center gap-3">
       <input v-model="title" type="text" placeholder="Title" required class="border p-2 text-white rounded w-full mb-2" />
       <input v-model.number="amount" type="number" placeholder="Amount" required class="border text-white p-2 rounded w-full mb-2" />
       <select v-model="type" required class="border p-2 rounded w-full mb-2 text-amber-100">

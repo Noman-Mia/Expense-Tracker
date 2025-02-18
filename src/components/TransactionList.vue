@@ -21,7 +21,7 @@
             </td>
           </tr>
           <tr v-if="transactions.length === 0">
-            <td colspan="4" class="text-center py-4">No transactions recorded yet.</td>
+            <td colspan="4" class="text-center py-4 text-blue-50">No transactions recorded yet.</td>
           </tr>
         </tbody>
       </table>

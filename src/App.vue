@@ -1,6 +1,6 @@
 <template>
     <div class="container mx-auto p-4 pt-20">
-      <h1 class="text-2xl font-bold text-center mb-4 text-blue-400 pb-3">
+      <h1 class="text-2xl font-bold text-center mb-4 text-blue-400 pb-5">
         Expense Tracker
       </h1>
       <AddTransaction @add-transaction="addTransaction" />
